@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.PopupMenu
 import android.widget.Toast
 class MainActivity : AppCompatActivity() {
+    private var context = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,11 +24,23 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_categories -> {
-            Toast.makeText(this, "You clicked on the menu button", Toast.LENGTH_SHORT).show()
+            createPopupMenu(item)
             true
         }
         else -> {
             super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun createPopupMenu(item: MenuItem) {
+        PopupMenu(this, this.findViewById(R.id.action_categories)).apply {
+            setOnMenuItemClickListener {
+                Toast.makeText(context, "You clicked on: ${it.title}", Toast.LENGTH_SHORT).show()
+                true
+            }
+            menu.add("Option 1")
+            menu.add("Option 2")
+            show()
         }
     }
 }

@@ -1,5 +1,7 @@
 #MenuTests
 
+This project is part of the Chuck Norris Jokes project I'm working on.
+
 The purpose of this project is to explore the way a menu is added to an Android appllication using
 the AppBar.
 
